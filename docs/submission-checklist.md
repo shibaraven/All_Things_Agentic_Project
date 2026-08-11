@@ -14,13 +14,14 @@
 - [x] Five identical local rehearsals
 - [x] Authenticated cloud three-event acceptance: 15/15 checks, 42/42 tasks, zero safety violations
 - [x] Single clean local Git repository with the complete source and evidence pack
+- [x] Public GitHub repository created at `shibaraven/All_Things_Agentic_Project`
 
 ## Owner actions before final submission
 
 - [ ] Approve changing the Sites access policy from owner-only to public/judge-accessible
-- [ ] Create the public GitHub repository and push the prepared `main` branch
+- [ ] Push the prepared `main` branch to the public GitHub repository
 - [ ] Record the four-minute demo, upload it to YouTube or Vimeo, and insert the URL in `docs/devpost-copy.md`
-- [ ] Replace `ADD_PUBLIC_GITHUB_URL` in `docs/devpost-copy.md`
+- [x] Replace the GitHub placeholder in `docs/devpost-copy.md`
 - [ ] Open both public URLs in a signed-out/private window
 - [ ] Paste the prepared copy and final links into Devpost, then submit
 
