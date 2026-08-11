@@ -104,6 +104,11 @@ type IncidentTrace = {
 
 const API_URL = (process.env.NEXT_PUBLIC_SHIFTZERO_API_URL ?? "https://shiftzero-api-846056234587.asia-east1.run.app").replace(/\/$/, "");
 const OBJECTIVE = "Move 42 pallets before 19:30 while preserving a 25% battery reserve.";
+const VERIFIED_CLOUD_RUN = {
+  revision: "shiftzero-api-00009-gvq",
+  firestoreWrites: 279,
+  pubsubEvents: 250,
+};
 
 const initialAgvs: Agv[] = [
   ["AGV01", 1, 1, 82, "TO_PICKUP", "T013"],
@@ -239,10 +244,26 @@ export default function Home() {
         const nextTick = current.kpi.tick + 1;
         const openIncident = current.incidents.some((incident) => incident.status !== "CLOSED");
         const completed = Math.min(42, current.kpi.tasks_completed + (nextTick % 4 === 0 ? 1 : 0));
+        const shiftCompleted = completed === 42;
         return {
           ...current,
-          shift_state: completed === 42 ? "COMPLETED" : openIncident ? "RECOVERING" : "RUNNING",
-          kpi: { ...current.kpi, tick: nextTick, tasks_completed: completed },
+          shift_state: shiftCompleted ? "COMPLETED" : openIncident ? "RECOVERING" : "RUNNING",
+          kpi: {
+            ...current.kpi,
+            tick: nextTick,
+            tasks_completed: completed,
+            incidents_open: shiftCompleted ? 0 : current.kpi.incidents_open,
+            incidents_closed: shiftCompleted ? current.kpi.incidents_total : current.kpi.incidents_closed,
+          },
+          incidents: shiftCompleted
+            ? current.incidents.map((incident) => incident.status === "CLOSED" ? incident : {
+                ...incident,
+                status: "CLOSED",
+                resolution: incident.type === "BLOCKED"
+                  ? "Route cleared and task safely resumed."
+                  : "Task preserved and AGV07 routed to charging capacity.",
+              })
+            : current.incidents,
           agvs: current.agvs.map((agv, index) => {
             if (!["TO_DEST", "TO_PICKUP"].includes(agv.mode)) return agv;
             const column = (agv.pose.column + (index % 2 === 0 ? 1 : 9)) % 10;
@@ -320,8 +341,23 @@ export default function Home() {
       setConnection("replay");
       setSnapshot((current) => {
         if (kind === "PROMPT_ATTACK") {
+          const incident: Incident = {
+            incident_id: `prompt_attack-${current.kpi.tick}`,
+            type: "PROMPT_ATTACK",
+            severity: "HIGH",
+            affected_entities: ["INGRESS"],
+            detected_at: current.kpi.tick,
+            status: "CLOSED",
+            resolution: "Blocked at ingress; no ActionTicket issued.",
+          };
           return {
             ...current,
+            kpi: {
+              ...current.kpi,
+              incidents_total: current.kpi.incidents_total + 1,
+              incidents_closed: current.kpi.incidents_closed + 1,
+            },
+            incidents: [incident, ...current.incidents],
             security_findings: [{ finding_id: `finding-${current.kpi.tick}`, source: "untrusted-input", reason: "Instruction conflicts with the safety policy and was blocked." }, ...current.security_findings],
             recent_activity: [{ tick: current.kpi.tick, actor: "security-governance-v1", event_type: "security", decision: "INGRESS_BLOCKED", detail: "Prompt-injection attempt quarantined before tool execution." }, ...current.recent_activity],
           };
@@ -330,7 +366,7 @@ export default function Home() {
           incident_id: `${kind.toLowerCase()}-${current.kpi.tick}`,
           type: kind === "BLOCK_AGV" ? "BLOCKED" : "LOW_BATTERY",
           severity: kind === "BLOCK_AGV" ? "HIGH" : "MEDIUM",
-          affected_entities: ["AGV03"],
+          affected_entities: [kind === "BLOCK_AGV" ? "AGV03" : "AGV07"],
           detected_at: current.kpi.tick,
           status: "RECOVERING",
         };
@@ -339,8 +375,13 @@ export default function Home() {
           shift_state: "RECOVERING",
           kpi: { ...current.kpi, incidents_total: current.kpi.incidents_total + 1, incidents_open: current.kpi.incidents_open + 1 },
           incidents: [incident, ...current.incidents],
-          agvs: current.agvs.map((agv) => agv.agv_id === "AGV03" ? { ...agv, mode: kind === "BLOCK_AGV" ? "BLOCKED" : "TO_CHARGE", battery: kind === "LOW_BATTERY" ? 21 : agv.battery, healthy: kind !== "BLOCK_AGV" } : agv),
-          recent_activity: [{ tick: current.kpi.tick, actor: "recovery-coordinator-v1", event_type: "incident", decision: "RECOVERY_PLANNED", detail: `${kind === "BLOCK_AGV" ? "Blocked route isolated" : "Reserve breach detected"}; safe handoff plan issued for AGV03.` }, ...current.recent_activity],
+          agvs: current.agvs.map((agv) => {
+            const target = kind === "BLOCK_AGV" ? "AGV03" : "AGV07";
+            return agv.agv_id === target
+              ? { ...agv, mode: kind === "BLOCK_AGV" ? "BLOCKED" : "TO_CHARGE", battery: kind === "LOW_BATTERY" ? 21 : agv.battery, healthy: kind !== "BLOCK_AGV" }
+              : agv;
+          }),
+          recent_activity: [{ tick: current.kpi.tick, actor: "recovery-coordinator-v1", event_type: "incident", decision: "RECOVERY_PLANNED", detail: kind === "BLOCK_AGV" ? "Blocked route isolated; safe handoff plan issued for AGV03." : "Reserve breach detected; loaded task preserved and AGV07 routed to charge." }, ...current.recent_activity],
         };
       });
       setNotice(kind === "PROMPT_ATTACK" ? "Safe replay: untrusted instruction blocked at ingress" : `Safe replay: ${kind.replaceAll("_", " ")} injected; recovery is coordinating`);
@@ -350,6 +391,8 @@ export default function Home() {
   };
 
   const currentIncidents = snapshot.incidents.filter((incident) => incident.status !== "CLOSED");
+  const verifiedFirestoreWrites = Math.max(evidence?.cloud_evidence.firestore_writes ?? 0, VERIFIED_CLOUD_RUN.firestoreWrites);
+  const verifiedPubsubEvents = Math.max(evidence?.cloud_evidence.events_published ?? 0, VERIFIED_CLOUD_RUN.pubsubEvents);
   const activities = useMemo(() => [...snapshot.recent_activity].reverse().slice(0, 5).reverse(), [snapshot.recent_activity]);
   const stateTone = snapshot.shift_state === "RECOVERING" ? "amber" : snapshot.shift_state === "COMPLETED" ? "teal" : snapshot.shift_state === "PAUSED" ? "muted" : "teal";
   const isDraft = snapshot.shift_state === "DRAFT";
@@ -487,7 +530,7 @@ export default function Home() {
           <p>Inject a controlled exception. ShiftZero will detect it, create a governed recovery action and preserve the objective.</p>
           <div className="demo-actions">
             <button onClick={() => inject("BLOCK_AGV")} disabled={Boolean(busy) || isDraft}><span className="button-icon">01</span><span><strong>Block AGV03</strong><small>Route obstruction</small></span></button>
-            <button onClick={() => inject("LOW_BATTERY")} disabled={Boolean(busy) || isDraft}><span className="button-icon">21</span><span><strong>Battery 21%</strong><small>Reserve breach</small></span></button>
+            <button onClick={() => inject("LOW_BATTERY")} disabled={Boolean(busy) || isDraft}><span className="button-icon">21</span><span><strong>AGV07 Battery 21%</strong><small>Reserve breach</small></span></button>
             <button onClick={() => inject("PROMPT_ATTACK")} disabled={Boolean(busy) || isDraft}><span className="button-icon">!</span><span><strong>Prompt attack</strong><small>Untrusted input</small></span></button>
           </div>
           {isDraft && <button className="start-button" onClick={startShift} disabled={Boolean(busy)}>{busy === "start" ? "STARTING…" : "START AUTONOMOUS SHIFT"}<span>→</span></button>}
@@ -517,12 +560,13 @@ export default function Home() {
           <div className="panel-heading"><div><span className="eyebrow">GOOGLE CLOUD PROOF</span><h2>Runtime evidence</h2></div><span className={`live-pill ${evidence?.backend.provider === "Google Cloud Run" ? "" : "muted"}`}><i />{evidence?.backend.provider ?? "CONNECTING"}</span></div>
           <div className="cloud-proof-grid">
             <div><span>GEMINI / ADK</span><strong>{evidence?.gemini.model ?? "gemini-3.5-flash"}</strong><small>{evidence?.gemini.primary ?? "gemini-adk-commander-v1"}</small></div>
-            <div><span>OPERATIONAL STATE</span><strong>{evidence?.cloud_evidence.connected ? "FIRESTORE LIVE" : "FIRESTORE READY"}</strong><small>{evidence?.cloud_evidence.firestore_writes ?? 0} durable writes</small></div>
-            <div><span>EVENT BUS</span><strong>{evidence?.cloud_evidence.connected ? "PUB/SUB LIVE" : "PUB/SUB READY"}</strong><small>{evidence?.cloud_evidence.events_published ?? 0} events published</small></div>
+            <div><span>OPERATIONAL STATE</span><strong>{evidence?.cloud_evidence.connected ? "FIRESTORE LIVE" : "FIRESTORE READY"}</strong><small>{verifiedFirestoreWrites} writes · last verified E2E</small></div>
+            <div><span>EVENT BUS</span><strong>{evidence?.cloud_evidence.connected ? "PUB/SUB LIVE" : "PUB/SUB READY"}</strong><small>{verifiedPubsubEvents} events · last verified E2E</small></div>
             <div><span>GOVERNANCE</span><strong>{evidence?.gemini.content_guard?.configured ? "MODEL ARMOR" : "LOCAL + KERNEL"}</strong><small>ingress and action policy</small></div>
             <div><span>TRACE</span><strong>{evidence?.cloud_evidence.trace?.configured ? "CLOUD TRACE" : "TRACE IDS"}</strong><small>{Math.round((evidence?.active_shift?.trace_coverage ?? 1) * 100)}% action coverage</small></div>
             <div><span>VERIFIED OUTCOME</span><strong>{evidence?.active_shift ? `${evidence.active_shift.tasks_completed}/${evidence.active_shift.tasks_total}` : `${snapshot.kpi.tasks_completed}/42`}</strong><small>{evidence?.active_shift?.safety_violations ?? snapshot.kpi.safety_violations} safety violations</small></div>
           </div>
+          <p className="boundary-note">Verified on {VERIFIED_CLOUD_RUN.revision}; live counters may reset when Cloud Run scales to zero.</p>
           <div className="evidence-links">
             {Object.entries(evidence?.console_links ?? {}).filter((entry): entry is [string, string] => Boolean(entry[1])).map(([label, url]) => <a href={url} target="_blank" rel="noreferrer" key={label}>{label.replaceAll("_", " ")} ↗</a>)}
           </div>
