@@ -174,6 +174,7 @@ This is a digital-twin hackathon system, not an industrial safety certification 
 | `dashboard/` | Hosted Command Center |
 | `evaluation/` | Agent and deterministic evaluation cases |
 | `docs/evidence/` | Rehearsal and cloud verification artifacts |
+| `docs/submission-checklist.md` | Ready artifacts and owner-only final submission actions |
 | `deploy/` | Cloud Run deployment scripts |
 
 ## Findings and learnings
