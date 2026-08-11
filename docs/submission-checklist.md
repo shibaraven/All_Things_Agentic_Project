@@ -19,7 +19,7 @@
 ## Owner actions before final submission
 
 - [ ] Approve changing the Sites access policy from owner-only to public/judge-accessible
-- [ ] Push the prepared `main` branch to the public GitHub repository
+- [x] Push the prepared `main` branch to the public GitHub repository
 - [ ] Record the four-minute demo, upload it to YouTube or Vimeo, and insert the URL in `docs/devpost-copy.md`
 - [x] Replace the GitHub placeholder in `docs/devpost-copy.md`
 - [ ] Open both public URLs in a signed-out/private window
