@@ -1,0 +1,21 @@
+Meet ShiftZero, a governed autonomous factory operations agent fleet built for the All Things Agentic Hackathon. The objective is to move forty-two pallets before the deadline while preserving a twenty-five percent battery reserve. The public Command Center begins in a deterministic draft state so judges can replay the same shift and inspect the same evidence.
+
+Starting the autonomous shift activates the Operations Commander, Fleet Dispatcher, Warehouse Context, Recovery Coordinator, and Security and Governance agents. Gemini on Vertex AI and Google Agent Development Kit provide bounded reasoning, but they never receive direct execution authority. Every proposed action crosses a deterministic Safety Kernel that validates identity, schema, current state, route feasibility, battery reserve, emergency stop, and idempotency before issuing a short-lived Action Ticket.
+
+First, the route used by A G V zero three is blocked. The operational twin detects the obstruction, opens an incident, and safely reroutes the vehicle without an operator takeover. Normal dispatch continues around the disruption.
+
+Next, A G V zero seven is forced to twenty-one percent battery, below the required reserve. ShiftZero preserves the task and sends the vehicle to charging capacity. Battery protection is enforced as policy, not treated as a language-model suggestion.
+
+The third event is adversarial. An untrusted instruction attempts to bypass safety and dispatch at maximum speed. Security and Governance blocks the prompt at ingress. No Action Ticket is issued, the incident is closed with a trace, recoveries reach three, and safety violations remain zero.
+
+The shift continues autonomously. Decisions, tickets, incidents, and vehicle state remain visible while the replay advances. The final result is forty-two of forty-two pallets, three recoveries, zero safety violations, no manual dispatch, and one hundred percent action trace coverage.
+
+Now the same uninterrupted recording moves to the deployed Google Cloud evidence. This is the live Cloud Run service named shiftzero-api in the asia-east-one region. The metrics view proves the service is deployed and observable while retaining scale-to-zero efficiency.
+
+The Cloud Run logs provide runtime evidence for authenticated requests, health checks, shift execution, and incident read models. The deployed revision uses a least-privilege runtime identity, Secret Manager for protected configuration, and asynchronous cloud sinks so a transient dependency cannot weaken the deterministic control loop.
+
+Firestore Studio shows durable shift and event records written by the cloud execution. The verified end-to-end run produced two hundred seventy-nine Firestore writes. Pub Sub separately published two hundred fifty domain events for downstream consumers and audit processing.
+
+Cloud Trace completes the observability chain. Planning and tool spans carry a shared trace identity from agent reasoning through policy checks and persistence. Model Armor screens untrusted text at cloud ingress, while the local policy layer provides a deterministic fallback.
+
+ShiftZero demonstrates a practical enterprise pattern: let agents reason about ambiguity, let typed tools provide facts, let deterministic policy retain authority, and let verifiable cloud events prove exactly what happened. The public Command Center, source repository, test suite, architecture evidence, and this live execution are ready for judge review.
