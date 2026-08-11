@@ -50,6 +50,7 @@ test("ships the finished social card and removes starter preview assets", async 
   assert.match(page, /affected_entities: \[kind === "BLOCK_AGV" \? "AGV03" : "AGV07"\]/);
   assert.match(page, /last verified E2E/);
   assert.match(page, /prompt_attack-/);
+  assert.match(page, /\}, 600\);/);
   assert.doesNotMatch(page, /NEXT_PUBLIC_SHIFTZERO_DEMO_TOKEN|X-Demo-Token|shiftzero-local-demo/);
   assert.match(layout, /generateMetadata/);
   assert.match(packageJson, /"name": "shiftzero-command-center"/);

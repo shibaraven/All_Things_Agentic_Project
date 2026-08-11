@@ -271,7 +271,7 @@ export default function Home() {
           }),
         };
       });
-    }, 1200);
+    }, 600);
     return () => window.clearInterval(timer);
   }, [connection, snapshot.shift_state]);
 
