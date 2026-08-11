@@ -15,14 +15,16 @@
 - [x] Authenticated cloud three-event acceptance: 15/15 checks, 42/42 tasks, zero safety violations
 - [x] Single clean local Git repository with the complete source and evidence pack
 - [x] Public GitHub repository created at `shibaraven/All_Things_Agentic_Project`
+- [x] Command Center access changed from owner-only to public and verified anonymously
+- [x] 3:49 narrated 1080p demo uploaded to YouTube with HD processing complete and no copyright issues detected
 
 ## Owner actions before final submission
 
-- [ ] Approve changing the Sites access policy from owner-only to public/judge-accessible
+- [x] Approve changing the Sites access policy from owner-only to public/judge-accessible
 - [x] Push the prepared `main` branch to the public GitHub repository
-- [ ] Record the four-minute demo, upload it to YouTube or Vimeo, and insert the URL in `docs/devpost-copy.md`
+- [x] Record the four-minute demo, upload it to YouTube, and insert the URL in `docs/devpost-copy.md`
 - [x] Replace the GitHub placeholder in `docs/devpost-copy.md`
-- [ ] Open both public URLs in a signed-out/private window
+- [x] Verify the Command Center and unlisted YouTube URL without relying on the signed-in Studio session
 - [ ] Paste the prepared copy and final links into Devpost, then submit
 
 Do not publish a demo token, service-account credential, OAuth code, or raw secret output in the repository, video, or Devpost submission.

@@ -1,0 +1,47 @@
+[
+  {
+    "image": "tmp/video-scenes/01-hero.png",
+    "label": "01-opening",
+    "narration": "Meet ShiftZero, a governed autonomous factory operations agent fleet built for the All Things Agentic Hackathon. The objective is simple to state and difficult to execute: move forty-two pallets before the deadline while preserving a twenty-five percent battery reserve. ShiftZero plans the shift, dispatches nine autonomous guided vehicle twins, recovers from disruptions, blocks unsafe instructions, and preserves a complete evidence trail without placing a language model directly in the control path."
+  },
+  {
+    "image": "docs/architecture.png",
+    "label": "02-architecture",
+    "narration": "The architecture deliberately separates reasoning from authority. Gemini three point five Flash on Vertex AI works through Google Agent Development Kit agents. They receive typed, read-only facts and produce recommendations. Every proposed action then crosses a deterministic Safety Kernel that validates identity, exact schema, state freshness, route feasibility, battery reserve, emergency stop, and idempotency. Only the Kernel can issue a short-lived, single-use Action Ticket, and only a valid ticket can update the operational twin."
+  },
+  {
+    "image": "tmp/video-scenes/03-agents-cloud.png",
+    "label": "03-agent-fleet",
+    "narration": "The fortified fleet contains five bounded agents. The Operations Commander decomposes the objective. Fleet Dispatcher scores candidates. Warehouse Context supplies station, queue, and task constraints. Recovery Coordinator classifies incidents and proposes recovery. Security and Governance screens untrusted content and checks policy. None has execution authority. Cloud Run hosts the Fast API service, while Firestore, Pub Sub, Model Armor, Cloud Trace, Secret Manager, and a least-privilege runtime identity provide durable cloud evidence and governance."
+  },
+  {
+    "image": "tmp/video-scenes/02-started.png",
+    "label": "04-autonomous-start",
+    "narration": "Starting the autonomous shift activates a safe deterministic replay for judges. The production mutation secret never enters the browser. The Commander creates a forty-two transfer plan, the fleet begins dispatching, and the dashboard streams state, decisions, safety posture, incidents, and key performance indicators. Each autonomous action is ticketed. The operational loop remains deterministic, so the same seed produces the same decisions, completion state, and trace evidence every time."
+  },
+  {
+    "image": "tmp/video-scenes/04-route-recovery.png",
+    "label": "05-route-recovery",
+    "narration": "First, we block the route used by A G V zero three. The twin detects the obstruction and opens an incident. Recovery does not directly move the vehicle. It proposes a bounded handoff or reroute using current state. The Safety Kernel rechecks route locks, destination reachability, load state, proposal freshness, and identity before accepting anything. Normal dispatch continues around the disruption, preserving throughput without an operator takeover."
+  },
+  {
+    "image": "tmp/video-scenes/06-battery-recovery.png",
+    "label": "06-battery-recovery",
+    "narration": "Next, the vehicle is forced to twenty-one percent battery, below the required reserve. ShiftZero treats battery protection as policy, not a suggestion. The recovery sequence preserves any loaded task, resumes only when safe, and directs the vehicle toward charging capacity without violating route or station constraints. This ordering matters: blocked plus low battery must recover through a safe resume and charge sequence, rather than an unsafe immediate reassignment."
+  },
+  {
+    "image": "tmp/video-scenes/07-prompt-defense.png",
+    "label": "07-prompt-defense",
+    "narration": "The third event is adversarial. An untrusted maintenance note says to ignore safety rules and dispatch at maximum speed. Model Armor screens the content at cloud ingress, and the local application policy provides a deterministic fallback. Even if hostile text reached proposal handling, the Safety Kernel rejects forbidden action types and identity violations. The dashboard records one blocked instruction, while zero unsafe vehicle commands are issued."
+  },
+  {
+    "image": "tmp/video-scenes/08-final-incident.png",
+    "label": "08-incident-trace",
+    "narration": "Selecting an incident opens its trace. The evidence shows detection, proposal, policy decision, and safe replay outcome. Fast API exposes incident and action trace read models, server-sent events, and idempotent lifecycle operations. Firestore receives durable shift and event records, Pub Sub publishes domain events, and Open Telemetry exports planning spans to Cloud Trace. These sinks run asynchronously, so a transient cloud dependency cannot stall or weaken the deterministic control loop."
+  },
+  {
+    "image": "tmp/video-scenes/10-final-cloud.png",
+    "label": "09-outcome",
+    "narration": "The accepted outcome is forty-two of forty-two pallets, zero safety violations, no manual dispatch, and one hundred percent action trace coverage. The authenticated Cloud Run test passed fifteen of fifteen checks and produced real Firestore writes, Pub Sub events, Model Armor findings, and Cloud Trace configuration evidence. ShiftZero demonstrates a practical enterprise pattern: let agents reason about ambiguity, let explicit tools provide facts, let deterministic policy retain authority, and let verifiable events prove what happened. Thank you for reviewing ShiftZero."
+  }
+]
