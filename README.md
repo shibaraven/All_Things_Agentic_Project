@@ -5,7 +5,7 @@
 ShiftZero is a governed autonomous factory-operations agent fleet built for the **All Things Agentic Hackathon - Fortified Enterprise Fleet** track. A supervisor supplies one outcome - move 42 pallets before the deadline while preserving a 25% battery reserve - and the system plans the shift, dispatches nine AGV digital twins, detects exceptions, proposes recovery, enforces safety policy, and records evidence.
 
 - **Live Command Center:** <https://shiftzero-command-center.mingjen.chatgpt.site>
-- **Demo video:** <https://youtu.be/R28w55X9LJg>
+- **Live demo video:** <https://youtu.be/3SUfDhPaeQY>
 - **Source repository:** <https://github.com/shibaraven/All_Things_Agentic_Project>
 - **Cloud API:** <https://shiftzero-api-846056234587.asia-east1.run.app>
 - **API health:** <https://shiftzero-api-846056234587.asia-east1.run.app/health>
