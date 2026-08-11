@@ -1,0 +1,45 @@
+{
+  "captured_at": "2026-08-11T00:28:14Z",
+  "project_id": "project-c410e695-4995-4d01-aca",
+  "project_number": "846056234587",
+  "cloud_run": {
+    "service": "shiftzero-api",
+    "region": "asia-east1",
+    "revision": "shiftzero-api-00009-gvq",
+    "traffic_percent": 100,
+    "runtime_service_account": "shiftzero-runtime@project-c410e695-4995-4d01-aca.iam.gserviceaccount.com",
+    "version": "0.2.0-g3"
+  },
+  "vertex_ai": {
+    "model": "gemini-3.5-flash",
+    "mode": "google-adk"
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-east1",
+    "type": "FIRESTORE_NATIVE",
+    "connected": true,
+    "accepted_run_writes": 279
+  },
+  "pubsub": {
+    "topic": "shiftzero-events",
+    "connected": true,
+    "accepted_run_events": 250
+  },
+  "model_armor": {
+    "template": "shiftzero-ingress",
+    "location": "asia-southeast1",
+    "configured": true,
+    "accepted_attack_match_state": "MATCH_FOUND",
+    "accepted_attack_invocation_result": "SUCCESS"
+  },
+  "cloud_trace": {
+    "provider": "google-cloud-trace",
+    "configured": true,
+    "last_error": null
+  },
+  "secret_manager": {
+    "secret": "shiftzero-demo-token",
+    "secret_value_in_artifacts": false
+  }
+}

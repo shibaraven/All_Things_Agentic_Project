@@ -1,0 +1,77 @@
+{
+  "suite": "ShiftZero five-run competition rehearsal",
+  "passed": true,
+  "deterministic": true,
+  "runs": [
+    {
+      "run": 1,
+      "passed": true,
+      "completed_tick": 188,
+      "tasks_completed": 42,
+      "safety_violations": 0,
+      "manual_interventions": 0,
+      "trace_coverage": 1.0,
+      "three_injections": [
+        "BLOCK_AGV",
+        "LOW_BATTERY",
+        "PROMPT_ATTACK"
+      ]
+    },
+    {
+      "run": 2,
+      "passed": true,
+      "completed_tick": 188,
+      "tasks_completed": 42,
+      "safety_violations": 0,
+      "manual_interventions": 0,
+      "trace_coverage": 1.0,
+      "three_injections": [
+        "BLOCK_AGV",
+        "LOW_BATTERY",
+        "PROMPT_ATTACK"
+      ]
+    },
+    {
+      "run": 3,
+      "passed": true,
+      "completed_tick": 188,
+      "tasks_completed": 42,
+      "safety_violations": 0,
+      "manual_interventions": 0,
+      "trace_coverage": 1.0,
+      "three_injections": [
+        "BLOCK_AGV",
+        "LOW_BATTERY",
+        "PROMPT_ATTACK"
+      ]
+    },
+    {
+      "run": 4,
+      "passed": true,
+      "completed_tick": 188,
+      "tasks_completed": 42,
+      "safety_violations": 0,
+      "manual_interventions": 0,
+      "trace_coverage": 1.0,
+      "three_injections": [
+        "BLOCK_AGV",
+        "LOW_BATTERY",
+        "PROMPT_ATTACK"
+      ]
+    },
+    {
+      "run": 5,
+      "passed": true,
+      "completed_tick": 188,
+      "tasks_completed": 42,
+      "safety_violations": 0,
+      "manual_interventions": 0,
+      "trace_coverage": 1.0,
+      "three_injections": [
+        "BLOCK_AGV",
+        "LOW_BATTERY",
+        "PROMPT_ATTACK"
+      ]
+    }
+  ]
+}

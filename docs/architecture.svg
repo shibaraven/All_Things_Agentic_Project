@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">ShiftZero governed autonomous factory architecture</title>
+  <desc id="desc">Hosted Command Center and FastAPI route objectives through Model Armor and a five-agent Google ADK fleet. Typed proposals cross a deterministic Safety Kernel before the nine-AGV twin. Firestore, Pub/Sub and Cloud Trace form an asynchronous evidence plane.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061114"/><stop offset="1" stop-color="#0b2024"/></linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#10282d"/><stop offset="1" stop-color="#0a191d"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#0bd8bd"/></marker>
+    <style>
+      .h1{font:700 38px Arial,sans-serif;fill:#eef9f7;letter-spacing:2px}.sub{font:16px Arial,sans-serif;fill:#83a39f}.zone{fill:url(#panel);stroke:#31555a;stroke-width:2}.zoneTitle{font:700 14px Arial,sans-serif;fill:#0bd8bd;letter-spacing:2px}.box{fill:#0c2024;stroke:#497076;stroke-width:1.5}.box2{fill:#111e20;stroke:#f3a83b;stroke-width:1.5}.title{font:700 17px Arial,sans-serif;fill:#eaf7f4}.body{font:13px Arial,sans-serif;fill:#91aaa6}.small{font:11px Arial,sans-serif;fill:#78938f}.accent{fill:#0bd8bd}.amber{fill:#f3a83b}.line{fill:none;stroke:#0bd8bd;stroke-width:2;marker-end:url(#arrow)}.dash{fill:none;stroke:#69918c;stroke-width:1.5;stroke-dasharray:6 6}.trust{font:700 11px Arial,sans-serif;fill:#ff8068;letter-spacing:1px}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="70" y="72" class="h1">SHIFTZERO</text>
+  <text x="70" y="102" class="sub">Governed Autonomous Factory Operations Agent Fleet</text>
+  <text x="1530" y="74" text-anchor="end" class="zoneTitle">FORTIFIED ENTERPRISE FLEET</text>
+
+  <rect x="55" y="135" width="1490" height="120" rx="14" class="zone"/>
+  <text x="78" y="164" class="zoneTitle">EXPERIENCE &amp; API EDGE</text>
+  <rect x="85" y="180" width="330" height="52" rx="8" class="box"/><text x="105" y="203" class="title">Hosted Command Center</text><text x="105" y="221" class="small">Map · KPI · SSE · incident trace · safe replay</text>
+  <rect x="505" y="180" width="300" height="52" rx="8" class="box"/><text x="525" y="203" class="title">FastAPI on Cloud Run</text><text x="525" y="221" class="small">Auth · idempotency · event/read models</text>
+  <rect x="895" y="180" width="270" height="52" rx="8" class="box2"/><text x="915" y="203" class="title">Model Armor</text><text x="915" y="221" class="small">Prompt/tool ingress + local fallback</text>
+  <rect x="1255" y="180" width="245" height="52" rx="8" class="box"/><text x="1275" y="203" class="title">Secret Manager + IAM</text><text x="1275" y="221" class="small">No browser mutation secret</text>
+  <path d="M415 206 H495" class="line"/><path d="M805 206 H885" class="line"/><path d="M1165 206 H1245" class="dash"/>
+
+  <rect x="55" y="285" width="1490" height="260" rx="14" class="zone"/>
+  <text x="78" y="315" class="zoneTitle">GOOGLE ADK AGENT FLEET · GEMINI 3.5 FLASH ON VERTEX AI</text>
+  <rect x="550" y="337" width="500" height="70" rx="10" class="box"/><circle cx="585" cy="372" r="15" class="accent" filter="url(#glow)"/><text x="615" y="364" class="title">Operations Commander</text><text x="615" y="385" class="body">Objective → typed Mission Plan · completion criteria</text>
+  <rect x="85" y="447" width="300" height="70" rx="10" class="box"/><text x="105" y="472" class="title">Fleet Dispatcher</text><text x="105" y="493" class="body">Candidate scoring · dispatch proposals</text><text x="105" y="509" class="small">read-only tools</text>
+  <rect x="465" y="447" width="300" height="70" rx="10" class="box"/><text x="485" y="472" class="title">Warehouse Context</text><text x="485" y="493" class="body">Station · queue · task constraints</text><text x="485" y="509" class="small">read-only tools</text>
+  <rect x="845" y="447" width="300" height="70" rx="10" class="box"/><text x="865" y="472" class="title">Recovery Coordinator</text><text x="865" y="493" class="body">Incident classification · safe sequences</text><text x="865" y="509" class="small">proposal only</text>
+  <rect x="1225" y="447" width="275" height="70" rx="10" class="box"/><text x="1245" y="472" class="title">Security &amp; Governance</text><text x="1245" y="493" class="body">Content · identity · authorization</text><text x="1245" y="509" class="small">no actuator access</text>
+  <path d="M800 407 V430 H235 V440" class="dash"/><path d="M800 407 V440" class="dash"/><path d="M800 407 V430 H995 V440" class="dash"/><path d="M800 407 V430 H1360 V440" class="dash"/>
+
+  <text x="800" y="577" text-anchor="middle" class="trust">TRUST BOUNDARY · AGENTS PROPOSE, NEVER EXECUTE</text>
+  <path d="M800 545 V608" class="line"/>
+
+  <rect x="55" y="610" width="930" height="205" rx="14" class="zone"/>
+  <text x="78" y="640" class="zoneTitle">DETERMINISTIC CONTROL PLANE</text>
+  <rect x="90" y="670" width="365" height="105" rx="10" class="box2"/><text x="115" y="699" class="title">Safety Kernel</text><text x="115" y="724" class="body">Identity · exact schema · state freshness</text><text x="115" y="744" class="body">Route · reserve · emergency stop · idempotency</text><text x="115" y="764" class="small">Issues single-use, short-lived ActionTicket</text>
+  <rect x="595" y="670" width="350" height="105" rx="10" class="box"/><text x="620" y="699" class="title">9-AGV Operational Twin</text><text x="620" y="724" class="body">42 tasks · routes · stations · battery</text><text x="620" y="744" class="body">Incidents · recovery proof · KPI</text><text x="620" y="764" class="small">Only valid tickets mutate state</text>
+  <path d="M455 723 H585" class="line"/>
+
+  <rect x="1020" y="610" width="525" height="205" rx="14" class="zone"/>
+  <text x="1043" y="640" class="zoneTitle">ASYNCHRONOUS GOOGLE CLOUD EVIDENCE</text>
+  <rect x="1055" y="671" width="140" height="75" rx="9" class="box"/><text x="1075" y="700" class="title">Firestore</text><text x="1075" y="722" class="small">events + shifts</text>
+  <rect x="1212" y="671" width="140" height="75" rx="9" class="box"/><text x="1232" y="700" class="title">Pub/Sub</text><text x="1232" y="722" class="small">domain events</text>
+  <rect x="1369" y="671" width="140" height="75" rx="9" class="box"/><text x="1389" y="700" class="title">Cloud Trace</text><text x="1389" y="722" class="small">OTel spans</text>
+  <text x="1058" y="780" class="body">Queue-backed: cloud latency cannot block the Safety Kernel</text>
+  <path d="M945 722 H1010" class="dash"/>
+
+  <text x="65" y="860" class="small">Execution authority: deterministic Safety Kernel only</text>
+  <text x="1535" y="860" text-anchor="end" class="small">Hackathon digital twin · not industrial safety certification</text>
+</svg>

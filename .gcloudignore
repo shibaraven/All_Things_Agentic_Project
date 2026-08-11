@@ -1,0 +1,25 @@
+# Only the Cloud Run API source belongs in the build context.
+.gcloudignore
+.git/
+.gitignore
+.venv/
+venv/
+**/__pycache__/
+*.py[cod]
+.env
+.env.*
+dashboard/
+docs/
+evaluation/
+outputs/
+tmp/
+*.zip
+*.tar.gz
+*_selftest.py
+selftest.py
+cloud_e2e.py
+README.md
+PRE_EXISTING_WORK.md
+LICENSE
+LICENSE_NOTICE.md
+deploy/

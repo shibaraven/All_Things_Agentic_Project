@@ -1,0 +1,11 @@
+.git
+.venv
+venv
+dashboard
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.*
+outputs
+*.pdf

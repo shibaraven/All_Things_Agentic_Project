@@ -1,0 +1,1 @@
+"""ShiftZero service adapters."""
