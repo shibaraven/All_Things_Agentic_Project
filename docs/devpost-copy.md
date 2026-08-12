@@ -66,4 +66,5 @@ The hackathon backend is deployed on Cloud Run, not Agent Engine. Model Armor is
 - Cloud API: <https://shiftzero-api-846056234587.asia-east1.run.app>
 - Source repository: <https://github.com/shibaraven/All_Things_Agentic_Project>
 - Public live demo video: <https://youtu.be/3SUfDhPaeQY>
+- System overview image: `docs/shiftzero-system-overview-parchment.png`
 - Architecture image: `docs/architecture.png`

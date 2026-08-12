@@ -10,6 +10,10 @@ ShiftZero is a governed autonomous factory-operations agent fleet built for the 
 - **Cloud API:** <https://shiftzero-api-846056234587.asia-east1.run.app>
 - **API health:** <https://shiftzero-api-846056234587.asia-east1.run.app/health>
 
+## System at a glance
+
+![ShiftZero governed autonomous factory system overview](docs/shiftzero-system-overview-parchment.png)
+
 The hosted UI is safe by design: public traffic can read live state and evidence, while production mutations require a Secret Manager-backed token. Judge controls run an isolated deterministic replay and never expose that token in the browser.
 
 ## Problem and why agents
